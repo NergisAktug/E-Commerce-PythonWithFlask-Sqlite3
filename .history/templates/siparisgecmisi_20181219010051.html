@@ -1,0 +1,172 @@
+<!doctype html>
+{% if session['uye_giris']==True %}
+<html lang="en">
+  <head>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm" >
+        <a href="/" class="navbar-brand">ürün sayfası(LOGO)</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenü">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenü">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="/" class="nav-link " >Anasayfa -></a>
+                 </li>
+                
+                     </ul>
+                     {% if session['uye_giris']==True %}
+                    
+                         <a class="nav-link link-dark" href="/sepett">Sepete Dön</a>
+                    
+                 <a class="nav-link link-dark" href="/cikis">Çıkış Yap</a>
+                
+                 <h3>{{session['name']}}</h3>
+                 {% else %}
+                 <a href="/giris" class="header-wrapicon1 dis-block" style="padding-right:5px;">
+                     <img src="{{ url_for('static',filename='Users/Nergis/Desktop/e-ticaret/images/6.jpg') }}" class="header-icon1" alt="ICON">
+                  Giriş </a>
+                 <a href="/kayit" class="header-wrapicon1 dis-block">Kayıt Ol</a>
+                 {% endif %}
+                       
+        </div>
+
+    </nav>
+    <div class="container my-5">
+        {% if sepet != []%}
+        <table class="table my-5">
+            <thead>
+                    <thead>
+                            <tr>
+                                <th scope="col">Ürün</th>
+                                <th scope="col">Ürünİsmi</th>
+                                <th scope="col">Ürün Modeli</th>
+                                <th scope="col">Adet </th>
+                                <th scope="col">Birim Fiyatı</th>
+                                <th scope="col">Toplam Tutar</th>
+                                
+                            </tr>
+                        </thead>
+					{% for p in sepet%}
+                    <tbody>
+					<tr class="table-row">
+						<td >
+							<a href="#">
+								<div class="cart-img-product b-rad-4 o-f-hidden">
+									<img src="{{p.urunresmi}}" alt="IMG-PRODUCT">
+								</div>
+							</a>
+						</td>
+						<td >{{p.urunisim}}</td>
+						<td class="column-3">{{p.urunFiyati}}</td>
+						<form action="/sepetguncelle/{{p.id}}" method="POST">
+							<td class="column-4">
+								<div class="flex-w  w-size17">
+
+										<input class="size8 m-text18 t-center num-product" type="label" name="adet" value="{{p.urunFiyati}}">
+
+								
+								</div>
+							</td>
+							<td class="column-3">
+								{{p.satinalmatarihi}}
+							</td>
+							<td class="column-5">
+						</form>
+						</td>
+						
+                    </tr>
+                    </tbody>
+					{% endfor %}
+					
+			</table>
+			
+			
+		
+		{% else %}
+		<div class="col-md-12 text-center my-5">
+			<h1>Sipariş Geçmişi Boş!</h1>
+			<p>Hemen Alışverişe Başla</p>
+			<a href="{{url_for('index')}}">
+				<input type="button" class="btn btn-success btn-block btn-lg"style="margin-top:20px;" value="Anasayfa">
+			</a>
+		</div>
+		{% endif%}
+
+          
+              
+          
+               
+        
+
+    </div>
+    
+                    
+   <footer class="my-500">
+<div class="container">
+      <div class="row">
+     <div class="col-6 col-md-3">
+       <h5>Kayıt Koşulları</h5>
+       <ul class="list-unstyled">
+        <li><a href="#" class="text-muted">Deneme1</a></li>
+        <li><a href="#" class="text-muted">Deneme2</a></li>
+        <li><a href="#" class="text-muted">Deneme3</a></li>
+        
+        </ul>
+     </div>
+
+     <div class="col-6 col-md-3">
+        <h5>Alışveriş</h5>
+        <ul class="list-unstyled">
+            <li><a href="#" class="text-muted">Deneme1</a></li>
+            <li><a href="#" class="text-muted">Deneme2</a></li>
+         
+         </ul>
+      </div>
+      <div class="col-6 col-md-3">
+          <h5>Ödeme Adımları</h5>
+          <ul class="list-unstyled">
+              <li><a href="#" class="text-muted">Deneme1</a></li>
+              <li><a href="#" class="text-muted">Deneme2</a></li>
+              <li><a href="#" class="text-muted">Deneme3</a></li>
+              <li><a href="#" class="text-muted">Deneme4</a></li>
+              <li><a href="#" class="text-muted">Deneme5</a></li>
+              <li><a href="#" class="text-muted">Deneme6</a></li>
+           </ul>
+        </div>
+        <div class="col-6 col-md-3">
+            <h5>İade</h5>
+            <ul class="list-unstyled">
+                <li><a href="#" class="text-muted">Deneme1</a></li>
+                <li><a href="#" class="text-muted">Deneme2</a></li>
+                <li><a href="#" class="text-muted">Deneme3</a></li>
+                <li><a href="#" class="text-muted">Deneme4</a></li>
+             </ul>
+          </div>
+      </div>
+</div>
+   </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+        AOS.init();
+      </script>
+  </body>
+</html>
+{% else %}
+<a href="/uye">Üye Girişi Yapmalısınız!</a>
+{% endif %}

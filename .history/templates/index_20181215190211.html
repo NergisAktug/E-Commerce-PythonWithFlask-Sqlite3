@@ -1,0 +1,147 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <title>Elektronica</title>
+  </head>
+  <body>
+      
+        
+      
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm" >
+        <a href="/" class="navbar-brand"><h3 class="display-4 mb-2" >ELEKTRONİCA</h3></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenü">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenü">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" >Ürünler</a>
+                 </li>
+                 <li class="nav-item">
+                        <a href="#" class="nav-link">Satın Al</a>
+                     </li>
+                     </ul>
+                     
+                     {% if mesaj %}
+                     <ul class="navbar-nav">
+                     <div class="alert alert-success">
+                            <strong>Başardınız!</strong> {{mesaj}}
+                          </div>
+                          <li class="nav-item">
+                                <a href="/uyeGiris" class="btn btn-outline-primary">Giriş Yap</a>
+                               </li>
+                            </ul>
+                        {% else %}
+        {% if  session['uye_giris'] %}
+        <ul class="navbar-nav ml-auto">
+               <li class="nav-item">  <a href="/sepetGoster" class="nav-link">Sepetim</a></li>
+               <li class="nav-item">  <a href="/cikis" class="btn btn-outline-primary">Çıkış Yap</a></li>
+            </ul>  
+                
+        {% else %}
+        {% if session['admin_giris']  %}
+        <a href="/cikis" class="btn btn-outline-primary">Çıkış Yap</a>
+        {% else %}
+            <ul class="navbar-nav">
+            <li class="nav-item">
+            <a href="/kayit" class="nav-link">Kayıt Ol</a>
+            </li>
+            <li class="nav-item">
+            <a href="/giris" class="btn btn-outline-primary">Giriş Yap</a>
+            </li>
+            </ul>
+            {% endif %}
+        {% endif %}
+     {% endif %}
+        </div>
+
+    </nav>
+
+    <div class="container my-5">
+      <h1 class="display-4 text-center mb-2">Ürün Mağazası</h1>
+       <p class="text-center mb-5">Seçmiş olduğunuz ürünleri detaya tıklayarak satın alabilirsiniz.Keyifli alışverişler dileriz.</p>
+      <div class="clearfix"></div><hr>
+      <div class="card-columns">
+          {% if Urun==[] %}
+          <div class="alert alert-warning" role="alert">Herhangi bir ürün yok...</div>
+          {% else %}
+          {% for kayit in Urun %}
+          <div data-aos="fade-down" class="card border-0 shadow-lg">
+          <img src="C:/Users/Nergis/Desktop/e-ticaret/images/1.jpg" class="card-img-top">
+             <div class="card-body">
+                    {% for m in marka %}
+                    {% if m.markaId==kayit.markaId %}
+                    
+                    <p>{{m.markaId}}</p>
+                    <h4>{{m.markaadi}}</h4>
+                    <P>{{m.marka_modeli}} </P> 
+                    <p>{{kayit.urunFiyati}} ₺</p>
+                    <a href="/sepet/kayit.markaId" class="btn btn-outline-primary btn-block">Satın Al</a>
+                    {% endif %} 
+                 {% endfor %}
+                 
+                 
+            </div>
+          </div>  
+          
+      {% endfor %}
+      {% endif %}
+       </div>
+    <hr class="my-5">
+</div>
+
+<div class="container">
+    <div class="row">
+   <div class="col-12 col-md-6">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20301.85617055876!2d31.141754296264754!3d40.85236130692246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x409d9ffb96c2db75%3A0x8f3d111010f37200!2sGrand+Beyaz+Saray+Otel!5e0!3m2!1str!2str!4v1543152243177" 
+    width="450" height="250" >
+  </iframe>
+   </div>
+ 
+   <div class="col-12 col-md-6 ">
+  <div class="row my-100">
+  <div class="col-6 ">
+  <h5>İletişim</h5>
+  <ul class="list-unstyled mr-auto">
+      <li><a href="#" class="text-muted"><span class="fas fa-phone-volume"></span> 0592 645 78 96</a></li>
+      <li><a href="#" class="text-muted"><span class="fas fa-envelope"> </span>  info@elecronica.com</a></li>
+      <li><a href="#" class="text-muted"><span class="fas fa-map-marker"></span>  Kültür Mahallesi, 781. Sokak, 
+             81100 Düzce Merkez/Düzce</a></li>
+       </ul>
+    </div>
+ <div class="col-6">
+  <h5>Bizi Takip Edin</h5>
+  <button class="btn btn-primary"><a href="#"><i class="fab fa-facebook-f" style="color: white"></i></a> </button>
+  <button class="btn btn-primary"><a href="#"><i class="fab fa-twitter" style="color: white"></i></a> </button>
+  <button class="btn btn-primary"><a href="#"><i class="fab fa-linkedin" style="color: white"></i></a> </button>
+ </div> 
+ </div>
+ </div>
+ </div>
+ </div>
+
+                    
+ <footer class="container-fluid bg-4 text-center shadow-lg  my-5">
+    <p>Websitesi Google Chrome, Mozilla Firefox , Explorer 9 ve Explorer'ın Browserlarının üst versiyonlarını desteklemektedir.</p> 
+</footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+        AOS.init();
+      </script>
+  </body>
+</html>
+
+
