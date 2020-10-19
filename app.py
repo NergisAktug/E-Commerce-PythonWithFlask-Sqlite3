@@ -20,7 +20,7 @@ class ConfigClass(object):
     MAIL_USE_SSL = True
     MAIL_USE_TLS = False
     MAIL_USERNAME = 'nergis.aktug2014@gmail.com'
-    MAIL_PASSWORD = '05383896877'
+    MAIL_PASSWORD = '05########'
     MAIL_DEFAULT_SENDER = '"MyApp" <xyz@gmail.com>'
 
     USER_ENABLE_EMAIL = True
